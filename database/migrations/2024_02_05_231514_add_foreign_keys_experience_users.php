@@ -14,7 +14,9 @@ class AddForeignKeysExperienceUsers extends Migration
     public function up()
     {
         Schema::table('experience_users', function (Blueprint $table) {
-            //
+            $table->foreign('details_user_id', 'fk_experience_users_to_detail_users')
+                ->references('id')->on('detail_users')
+                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -26,7 +28,7 @@ class AddForeignKeysExperienceUsers extends Migration
     public function down()
     {
         Schema::table('experience_users', function (Blueprint $table) {
-            //
+            $table->dropForeign('fk_experience_users_to_detail_users');
         });
     }
 }
