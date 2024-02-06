@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysDetailUsers extends Migration
+class AddForeignKeysAdvantageServices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddForeignKeysDetailUsers extends Migration
      */
     public function up()
     {
-        Schema::table('detail_users', function (Blueprint $table) {
-            $table->foreign('users_id', 'fk_detail_users_to_users')
-                ->references('id')->on('users')
+        Schema::table('advantage_services', function (Blueprint $table) {
+            $table->foreign('services_id', 'fk_advantage_services_to_services')
+                ->references('id')->on('services')
                 ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
@@ -27,8 +27,8 @@ class AddForeignKeysDetailUsers extends Migration
      */
     public function down()
     {
-        Schema::table('detail_users', function (Blueprint $table) {
-            $table->dropForeign('fk_detail_users_to_users');
+        Schema::table('advantage_services', function (Blueprint $table) {
+            $table->dropIndex('fk_advantage_services_to_services');
         });
     }
 }
